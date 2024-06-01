@@ -9,6 +9,8 @@ packages = [{include = "wordle-solver", from = "src"}]
 [tool.poetry.dependencies]
 python = "^3.12"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.1"
 
 [build-system]
 requires = ["poetry-core"]
