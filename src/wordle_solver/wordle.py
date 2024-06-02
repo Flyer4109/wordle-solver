@@ -38,18 +38,35 @@ class Game:
         return len(self.guess_history) >= Game.MAX_GUESSES or self.has_won
 
     def _guess_result(self, guess: str) -> list[LetterResult]:
+        basic_result = self._basic_result(guess)
+        return self._remove_duplicate_yellows(guess, basic_result)
+
+    def _basic_result(self, guess: str) -> list[LetterResult]:
         guess_result = []
 
         for i, guess_letter in enumerate(guess):
             if guess_letter == self.__answer[i]:
                 guess_result.append(LetterResult.GREEN)
             elif guess_letter in self.__answer:
-                # TODO Improve yellow logic so that it doesn't count the same letter twice.
                 guess_result.append(LetterResult.YELLOW)
             else:
                 guess_result.append(LetterResult.BLACK)
 
         return guess_result
+
+    def _remove_duplicate_yellows(self, guess, position_result) -> list[LetterResult]:
+        # Get a list of letters the player still has to guess.
+        letters_left_to_guess = [letter for i, letter in enumerate(self.__answer) if
+                                 position_result[i] != LetterResult.GREEN]
+
+        # Detect duplicate yellows and turn them into black results.
+        for i, result in enumerate(position_result):
+            if result == LetterResult.YELLOW:
+                if guess[i] in letters_left_to_guess:
+                    letters_left_to_guess.remove(guess[i])
+                else:
+                    position_result[i] = LetterResult.BLACK
+        return position_result
 
     def __str__(self):
         return (f"Wordle(answer={self.__answer}, guesses={self.guess_history}, guess_count={len(self.guess_history)}"

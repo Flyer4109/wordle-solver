@@ -14,8 +14,9 @@ if __name__ == "__main__":
         has_won, guess_result, game_ended = game.input_guess(guess)
         print(guess_result)
 
+    print("Guess history: ", game.guess_history)
+
     if has_won:
         print("You won!")
     else:
         print("You lost :(")
-
