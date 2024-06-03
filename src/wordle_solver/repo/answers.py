@@ -25,7 +25,7 @@ class TextFileAnswers(AnswersRepo):
         return self.answers[random_index]
 
 
-class TestAnswers(AnswersRepo):
+class NoopAnswers(AnswersRepo):
     def __init__(self, answer: str) -> None:
         self.answer = answer
 

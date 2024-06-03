@@ -1,9 +1,9 @@
 from game_show_host import GameShowHost
-from repo.answers import TestAnswers
+from repo.answers import NoopAnswers
 from wordle import Game
 
 if __name__ == "__main__":
-    game = Game(TestAnswers("hello"))
+    game = Game(NoopAnswers("hello"))
 
     guess = GameShowHost.ask_question("What is your guess? ")
     has_won, guess_result, game_ended = game.input_guess(guess)

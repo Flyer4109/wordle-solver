@@ -15,7 +15,7 @@ class GameFinishedError(Exception):
 
 
 class Game:
-    MAX_GUESSES: int = 5
+    MAX_GUESSES: int = 6
 
     def __init__(self, answer_supplier: AnswersRepo):
         self.__answerSupplier = answer_supplier
