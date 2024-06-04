@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Isao Ramos <isao@rayamos.com>"]
 readme = "README.md"
-packages = [{include = "wordle-solver", from = "src"}]
+packages = [{include = "wordle_solver", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
